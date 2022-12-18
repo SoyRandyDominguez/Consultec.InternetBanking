@@ -12,26 +12,26 @@ namespace InternetBanking.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ClientController : ControllerBase
+    public class UserController : ControllerBase
     {
 
-        private readonly ILogger<ClientController> _logger;
-        private readonly IClientService _service;
+        private readonly ILogger<UserController> _logger;
+        private readonly IUserService _service;
 
-        public ClientController(ILogger<ClientController> logger, IClientService service)
+        public UserController(ILogger<UserController> logger, IUserService service)
         {
             _logger = logger;
             _service = service;
         }
 
         [HttpGet]
-        public Task<List<ClientResponseDto>> Get()
+        public Task<List<UserResponseDto>> Get()
         {
             return _service.GetAll();
         }
 
         [HttpPost]
-        public Task<ClientResponseDto> Post([FromBody] CreateClientDto create)
+        public Task<UserResponseDto> Post([FromBody] CreateUserDto create)
         {
             return _service.Create(create);
         }

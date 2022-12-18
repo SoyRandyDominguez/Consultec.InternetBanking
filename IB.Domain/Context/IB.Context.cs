@@ -11,8 +11,9 @@ namespace IB.Domain.Context
 
         public IBContext(DbContextOptions options) : base(options)
         {
-            ClientSeed();
+            //ClientSeed();
             //UsersSeed();
+            //this.SaveChangesAsync();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -24,13 +25,14 @@ namespace IB.Domain.Context
             admin.UserName = "admin";
             admin.Password = "admin";
             admin.CreatedByUser = "admin";
-            Users.Add(admin);
+            Set<User>().Add(admin);
             User randydmz = new User();
             randydmz.ClientId = 1;
             randydmz.UserName = "randydmz";
             randydmz.Password = "randyrandy";
             randydmz.CreatedByUser = "admin";
             Users.Add(randydmz);
+            Set<User>().Add(randydmz);
 
             User ashleycm = new User();
             ashleycm.ClientId = 2;
@@ -38,6 +40,7 @@ namespace IB.Domain.Context
             ashleycm.Password = "ashley0621";
             ashleycm.CreatedByUser = "admin";
             Users.Add(ashleycm);
+            Set<User>().Add(ashleycm);
 
             User andrea = new User();
             andrea.ClientId = 3;
@@ -45,6 +48,8 @@ namespace IB.Domain.Context
             andrea.Password = "andrea1928";
             andrea.CreatedByUser = "admin";
             Users.Add(andrea);
+            Set<User>().Add(andrea);
+
         }
         public void ClientSeed()
         {
@@ -75,7 +80,6 @@ namespace IB.Domain.Context
             andrea.IdentityDocument = "00000000000";
             andrea.CreatedByUser = "admin";
             Set<Client>().Add(andrea);
-            this.SaveChangesAsync();
         }
 
        

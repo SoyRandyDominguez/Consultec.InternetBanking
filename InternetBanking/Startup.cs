@@ -26,8 +26,7 @@ namespace InternetBanking
         {
             services.AddDbContext<IBContext>(opt => opt.UseInMemoryDatabase("ConsultecIB"));
             services.AddScoped<IBContext>();
-            services.AddTransient<IClientService, ClientService>();
-            services.AddTransient<IClientRepository, ClientRepository>();
+            InyectDependents(services);
             services.AddControllers();
         }
 
@@ -49,6 +48,14 @@ namespace InternetBanking
             {
                 endpoints.MapControllers();
             });
+        }
+
+       private void InyectDependents(IServiceCollection services)
+        {
+            services.AddTransient<IClientService, ClientService>();
+            services.AddTransient<IClientRepository, ClientRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
     }
 }
