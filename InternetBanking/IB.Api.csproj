@@ -10,5 +10,9 @@
     <Folder Include="Models\DtoResponse\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IB.Domain\IB.Domain.csproj" />
+  </ItemGroup>
+
 
 </Project>
