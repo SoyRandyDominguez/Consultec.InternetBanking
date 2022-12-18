@@ -6,12 +6,11 @@
 
   <ItemGroup>
     <Folder Include="Base\" />
-    <Folder Include="Models\DtoRequest\" />
-    <Folder Include="Models\DtoResponse\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IB.Domain\IB.Domain.csproj" />
+    <ProjectReference Include="..\IB.Services\IB.Application.csproj" />
   </ItemGroup>
 
 

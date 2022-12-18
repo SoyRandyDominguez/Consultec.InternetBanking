@@ -1,13 +1,15 @@
 ﻿using IB.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace IB.Domain.Entities
 {
-    public partial class User : BaseEntity<int>, IAuditEntity
+    public partial class User : IAuditEntity
     {
-        public override int? Id => base.Id;
+        [Key]
+        public int? Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public int ClientId { get; set; }

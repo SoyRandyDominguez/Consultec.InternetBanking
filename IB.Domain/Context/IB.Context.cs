@@ -12,7 +12,7 @@ namespace IB.Domain.Context
         public IBContext(DbContextOptions options) : base(options)
         {
             ClientSeed();
-            UsersSeed();
+            //UsersSeed();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -53,28 +53,31 @@ namespace IB.Domain.Context
             admin.LastName = "admin";
             admin.IdentityDocument = "admin";
             admin.CreatedByUser = "admin";
-            Clients.Add(admin);
+            Set<Client>().Add(admin);
 
             Client randydmz = new Client();
             randydmz.Name = "Randy";
             randydmz.LastName = "Dominguez";
             randydmz.IdentityDocument = "40213779180";
             randydmz.CreatedByUser = "admin";
-            Clients.Add(randydmz);
+            Set<Client>().Add(randydmz);
 
             Client ashleycm = new Client();
             ashleycm.Name = "Ashley";
             ashleycm.LastName = "Campusano";
             ashleycm.IdentityDocument = "123456789101";
             ashleycm.CreatedByUser = "admin";
-            Clients.Add(ashleycm);
+            Set<Client>().Add(ashleycm);
 
             Client andrea = new Client();
             andrea.Name = "Andrea";
             andrea.LastName = "Calzado";
             andrea.IdentityDocument = "00000000000";
             andrea.CreatedByUser = "admin";
-            Clients.Add(andrea);
+            Set<Client>().Add(andrea);
+            this.SaveChangesAsync();
         }
+
+       
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IB.Infraestructure.Interfaces
 {
-    public interface IClientRepository : IBaseRepository<Client, int>
+    public interface IClientRepository 
     {
         Task<Client> Create(Client entity);
         Task<List<Client>> GetClients();

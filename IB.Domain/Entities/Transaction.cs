@@ -1,13 +1,15 @@
 ﻿using IB.Domain.Entities.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace IB.Domain.Entities
 {
-    public partial class Transaction : BaseEntity<int>, IAuditEntity
+    public partial class Transaction :IAuditEntity
     {
-        public override int? Id => base.Id;
+        [Key]
+        public int? Id { get; set; }
         public int TransactionTypeId { get; set; }
         public int AccountId { get; set; }
         public double Amount { get; set; }

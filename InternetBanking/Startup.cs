@@ -1,4 +1,11 @@
+using IB.Application.Interfaces;
+using IB.Application.Interfaces.Base;
+using IB.Application.Services;
+using IB.Application.Services.Base;
 using IB.Domain.Context;
+using IB.Infraestructure.Interfaces;
+using IB.Infraestructure.Interfaces.Base;
+using IB.Infraestructure.Repositories.Base;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,8 +34,10 @@ namespace InternetBanking
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IBContext>(opt => opt.UseInMemoryDatabase());
+            services.AddDbContext<IBContext>(opt => opt.UseInMemoryDatabase("ConsultecIB"));
             services.AddScoped<IBContext>();
+            services.AddTransient<IClientService, ClientService>();
+            services.AddTransient<IClientRepository, ClientRepository>();
             services.AddControllers();
         }
 
