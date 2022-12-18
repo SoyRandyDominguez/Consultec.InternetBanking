@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IB.Infraestructure.Repositories.Base
+namespace IB.Infraestructure.Repositories
 {
     public class ClientRepository : IClientRepository
     {
