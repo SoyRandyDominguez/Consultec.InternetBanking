@@ -4,5 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Base\" />
+    <Folder Include="Models\DtoRequest\" />
+    <Folder Include="Models\DtoResponse\" />
+  </ItemGroup>
+
 
 </Project>

@@ -7,6 +7,10 @@
   <ItemGroup>
     <Folder Include="Auth\" />
     <Folder Include="Base\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Dto\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
 </Project>
