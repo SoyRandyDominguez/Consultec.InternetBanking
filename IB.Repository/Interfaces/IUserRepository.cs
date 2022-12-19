@@ -11,6 +11,7 @@ namespace IB.Infraestructure.Interfaces
     {
         Task<User> Create(User entity);
         Task<List<User>> GetUsers();
-        Task<User> GetUser(string user,string pass);
+        Task<User> GetUser(string user, string pass);
+        Task<User> GetUserByClientId(int clientId);
     }
 }

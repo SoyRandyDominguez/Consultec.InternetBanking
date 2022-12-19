@@ -13,12 +13,14 @@ namespace IB.Domain.Context
         {
             ClientSeed();
             UsersSeed();
+            AccountTypeSeed();
             AccountSeed();
             this.SaveChangesAsync();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<AccountType> AccountTypes { get; set; }
         public async void UsersSeed()
         {
             var users = await Set<User>().ToListAsync();
@@ -95,21 +97,34 @@ namespace IB.Domain.Context
         }
         public async void AccountSeed()
         {
-
             var accounts = await Set<Account>().ToListAsync();
             if(accounts.Count == 0)
             {
                 Account account = new Account();
                 account.Balance = 100;
+                account.AccountTypeId = 1;
                 account.AccountNumber = 1234567890;
                 account.ClientId = 1;
                 Set<Account>().Add(account);
             }
-
-
-
         }
 
+        public async void AccountTypeSeed()
+        {
+            var types = await Set<AccountType>().ToListAsync();
+            if (types.Count == 0)
+            {
+                AccountType savings = new AccountType();
+                savings.Name = "Savings ";
+                savings.Code = "SA";
+                Set<AccountType>().Add(savings);
+
+                AccountType checking = new AccountType();
+                checking.Name = "Checking";
+                checking.Code = "CA";
+                Set<AccountType>().Add(checking);
+            }
+        }
 
 
     }

@@ -6,24 +6,18 @@ using System.Text;
 
 namespace IB.Domain.Entities
 {
-    public partial class Account :IAuditEntity
+    public partial class AccountType : IAuditEntity
     {
         [Key]
         public int? Id { get; set; }
-        public long AccountNumber { get; set; }
-        public int ClientId { get; set; }
-        public int? AccountTypeId { get; set; }
-        public double Balance { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedByUser { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string UpdatedByUser { get; set; }
-
-        public virtual Client Client { get; set; }
-        public virtual AccountType AccountType { get; set; }
-
-        public virtual ICollection<Transaction> Transactions { get; set; }
-        public Account()
+        public AccountType()
         {
             this.CreatedAt = DateTime.Now;
         }

@@ -81,7 +81,7 @@ namespace InternetBanking.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        [Route("get-by-clientid")]
+        [Route("get-all-by-clientid")]
         public async Task<IActionResult> GetByClientId(int clientId)
         {
             IActionResult response = Unauthorized();

@@ -13,8 +13,13 @@ namespace IB.Domain.Config
         {
             builder
             .HasOne(x => x.Client)
-            .WithMany(x=> x.Accounts)
+            .WithMany(x => x.Accounts)
             .HasForeignKey(x => x.ClientId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+            .HasOne(x => x.AccountType).WithMany()
+            .HasForeignKey(x => x.AccountTypeId)
             .OnDelete(DeleteBehavior.Cascade);
         }
     }

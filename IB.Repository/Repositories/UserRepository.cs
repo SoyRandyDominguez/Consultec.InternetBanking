@@ -34,6 +34,14 @@ namespace IB.Infraestructure.Repositories
                         .AsNoTracking().Where(x => x.UserName == user && x.Password == pass).FirstOrDefaultAsync();
         }
 
+        public async Task<User> GetUserByClientId(int clientId)
+        {
+            return await _dbContext.Set<User>()
+                       .Include(x => x.Client)
+                        .ThenInclude(x => x.Accounts)
+                       .AsNoTracking().Where(x => x.ClientId == clientId).FirstOrDefaultAsync();
+        }
+
         public async Task<List<User>> GetUsers()
         {
             return await _dbContext.Set<User>()

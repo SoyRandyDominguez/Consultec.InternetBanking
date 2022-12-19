@@ -30,6 +30,7 @@ namespace IB.Infraestructure.Repositories
         {
             return await _dbContext.Set<Account>()
                         .Include(x => x.Client)
+                       .Include(x => x.AccountType)
                        .Include(x => x.Transactions)
                         .ThenInclude(x => x.TransactionType)
                         .AsNoTracking().Where(x => x.AccountNumber == number).FirstOrDefaultAsync();
@@ -39,21 +40,27 @@ namespace IB.Infraestructure.Repositories
         {
             return await _dbContext.Set<Account>()
                        .Include(x => x.Client)
+                       .Include(x => x.AccountType)
                        .Include(x => x.Transactions)
                         .ThenInclude(x => x.TransactionType)
                        .AsNoTracking().ToListAsync();
-
         }
 
         public async Task<List<Account>> GeAccountsByClientId(int clientId)
         {
             return await _dbContext.Set<Account>()
                        .Include(x => x.Client)
+                       .Include(x => x.AccountType)
                        .Include(x => x.Transactions)
                         .ThenInclude(x => x.TransactionType)
                        .AsNoTracking().Where(x=> x.ClientId == clientId).ToListAsync();
 
         }
-      
+
+        public async Task<AccountType> GeAccountType(string code)
+        {
+            return await _dbContext.Set<AccountType>()
+                        .AsNoTracking().Where(x => x.Code == code).FirstOrDefaultAsync();
+        }
     }
 }

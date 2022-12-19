@@ -15,18 +15,32 @@ namespace IB.Application.Services
     {
         private readonly IAccountRepository _repository;
         private readonly IConfiguration _config;
-        private readonly IClientRepository _ClientRepository;
-        public AccountService(IAccountRepository baseRepo, IClientRepository clientRepo, IConfiguration config)
+        private readonly IClientRepository _clientRepository;
+        private readonly IUserRepository _userRepository;
+        public AccountService(IAccountRepository baseRepo, IClientRepository clientRepo, IUserRepository userRepo, IConfiguration config)
         {
             this._repository = baseRepo;
-            this._ClientRepository = clientRepo;
+            this._clientRepository = clientRepo;
+            this._userRepository = userRepo;
             this._config = config;
         }
 
         public async Task<AccountResponseDto> Create(CreateAccountDto createDTO)
         {
+
+            User user = await _userRepository.GetUserByClientId(createDTO.ClientId);
+            if (user == null|| !user.Password.Equals(createDTO.Password))
+            {
+                return null;
+            }
             Account entity = createDTO.ToEntity();
             entity.AccountNumber = await GenerateAccountNumber();
+            AccountType accountType = await _repository.GeAccountType(createDTO.TypeCode);
+            if (accountType != null)
+            {
+                entity.AccountTypeId = accountType.Id;
+            }
+
             var account = await _repository.Create(entity);
             AccountResponseDto responseDto = new AccountResponseDto(account);
             return responseDto;

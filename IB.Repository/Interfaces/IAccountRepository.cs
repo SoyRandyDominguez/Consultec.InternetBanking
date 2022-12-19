@@ -13,5 +13,7 @@ namespace IB.Infraestructure.Interfaces
         Task<List<Account>> GeAccounts();
         Task<List<Account>> GeAccountsByClientId(int clientId);
         Task<Account> GeAccount(long number);
+        Task<AccountType> GeAccountType(string code);
+
     }
 }
