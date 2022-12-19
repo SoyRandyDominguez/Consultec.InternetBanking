@@ -7,7 +7,7 @@ namespace IB.Application.Models.DtoRequest
 {
     public class CreateUserDto
     {
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -18,7 +18,7 @@ namespace IB.Application.Models.DtoRequest
         {
             return new User() { 
                 ClientId = ClientId ?? null,
-                UserName = UserName,
+                UserName = Username,
                 Password = Password
             };
         }
