@@ -1,13 +1,9 @@
 ﻿using IB.Application.Interfaces;
 using IB.Application.Models.DtoRequest;
 using IB.Application.Models.DtoResponse;
-using IB.Application.Services.Base;
-using IB.Domain.Entities;
 using IB.Infraestructure.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IB.Application.Services

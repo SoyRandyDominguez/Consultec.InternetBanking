@@ -1,7 +1,6 @@
 ﻿using IB.Application.Interfaces;
 using IB.Application.Models.DtoRequest;
 using IB.Application.Models.DtoResponse;
-using IB.Application.Services.Base;
 using IB.Domain.Entities;
 using IB.Infraestructure.Interfaces;
 using Microsoft.Extensions.Configuration;

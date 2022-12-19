@@ -10,7 +10,7 @@ namespace IB.Domain.Entities
     {
         [Key]
         public int? Id { get; set; }
-        public string AccountNumber { get; set; }
+        public long AccountNumber { get; set; }
         public int ClientId { get; set; }
         public double Balance { get; set; }
         public DateTime CreatedAt { get; set; }

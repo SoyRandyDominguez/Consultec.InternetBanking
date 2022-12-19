@@ -41,13 +41,6 @@ namespace InternetBanking.Controllers
             return _service.Create(create);
         }
 
-        //[HttpPost]
-        //[Route("login")]
-        //public Task<UserResponseDto> login([FromBody] LoginDto login)
-        //{
-        //    return _service.Login(login);
-        //}
-
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]

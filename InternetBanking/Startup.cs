@@ -74,6 +74,8 @@ namespace InternetBanking
             services.AddTransient<IClientRepository, ClientRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
         }
 
         private void ImplementJWT(IServiceCollection services)
