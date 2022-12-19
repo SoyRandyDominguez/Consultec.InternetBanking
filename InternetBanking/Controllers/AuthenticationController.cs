@@ -1,6 +1,7 @@
 ﻿using IB.Application.Interfaces;
 using IB.Application.Models.DtoRequest;
 using IB.Application.Models.DtoResponse;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -31,17 +32,34 @@ namespace InternetBanking.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("register-user")]
         public Task<UserResponseDto> registerUser([FromBody] CreateUserDto create)
         {
             return _service.Create(create);
         }
 
+        //[HttpPost]
+        //[Route("login")]
+        //public Task<UserResponseDto> login([FromBody] LoginDto login)
+        //{
+        //    return _service.Login(login);
+        //}
+
         [HttpPost]
+        [AllowAnonymous]
         [Route("login")]
-        public Task<UserResponseDto> login([FromBody] LoginDto login)
+        public async Task<IActionResult> Login([FromBody] LoginDto login)
         {
-            return _service.Login(login);
+            IActionResult response = Unauthorized();
+
+            UserResponseDto user = await _service.Login(login);
+            if (user != null)
+            {
+                response = Ok(user);
+            }
+
+            return response;
         }
     }
 }

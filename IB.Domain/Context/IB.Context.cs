@@ -11,9 +11,9 @@ namespace IB.Domain.Context
 
         public IBContext(DbContextOptions options) : base(options)
         {
-            //ClientSeed();
-            //UsersSeed();
-            //this.SaveChangesAsync();
+            ClientSeed();
+            UsersSeed();
+            this.SaveChangesAsync();
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }

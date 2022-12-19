@@ -10,6 +10,7 @@ namespace IB.Application.Models.DtoResponse
         public int? Id { get; set; }
         public string Username { get; set; }
         public int? ClientId { get; set; }
+        public string? TokenJwt { get; set; }
         public ClientResponseDto Client { get; set; }
 
         public UserResponseDto(User userEntity)
