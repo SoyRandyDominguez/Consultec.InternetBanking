@@ -1,14 +1,10 @@
 ﻿using IB.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace IB.Domain.Context
 {
     public class IBContext : DbContext
     {
-
         public IBContext(DbContextOptions options) : base(options)
         {
             ClientSeed();
@@ -32,6 +28,7 @@ namespace IB.Domain.Context
                 admin.Password = "admin";
                 admin.CreatedByUser = "admin";
                 Set<User>().Add(admin);
+
                 User randydmz = new User();
                 randydmz.ClientId = 2;
                 randydmz.UserName = "randydmz";
@@ -39,22 +36,6 @@ namespace IB.Domain.Context
                 randydmz.CreatedByUser = "admin";
                 Users.Add(randydmz);
                 Set<User>().Add(randydmz);
-
-                User ashleycm = new User();
-                ashleycm.ClientId = 3;
-                ashleycm.UserName = "ashleycm";
-                ashleycm.Password = "ashley0621";
-                ashleycm.CreatedByUser = "admin";
-                Users.Add(ashleycm);
-                Set<User>().Add(ashleycm);
-
-                User andrea = new User();
-                andrea.ClientId = 4;
-                andrea.UserName = "andrea";
-                andrea.Password = "andrea1928";
-                andrea.CreatedByUser = "admin";
-                Users.Add(andrea);
-                Set<User>().Add(andrea);
             }
         }
         public async void ClientSeed()
@@ -76,20 +57,6 @@ namespace IB.Domain.Context
                 randydmz.CreatedByUser = "admin";
                 Set<Client>().Add(randydmz);
 
-                Client ashleycm = new Client();
-                ashleycm.Name = "Ashley";
-                ashleycm.LastName = "Campusano";
-                ashleycm.IdentityDocument = "123456789101";
-                ashleycm.CreatedByUser = "admin";
-                Set<Client>().Add(ashleycm);
-
-                Client andrea = new Client();
-                andrea.Name = "Andrea";
-                andrea.LastName = "Calzado";
-                andrea.IdentityDocument = "00000000000";
-                andrea.CreatedByUser = "admin";
-                Set<Client>().Add(andrea);
-
             }
 
 
@@ -108,7 +75,6 @@ namespace IB.Domain.Context
                 Set<Account>().Add(account);
             }
         }
-
         public async void AccountTypeSeed()
         {
             var types = await Set<AccountType>().ToListAsync();
@@ -125,7 +91,5 @@ namespace IB.Domain.Context
                 Set<AccountType>().Add(checking);
             }
         }
-
-
     }
 }

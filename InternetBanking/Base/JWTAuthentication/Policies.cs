@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 
 namespace IB.Api.Base.JWTAuthentication
 {
-    using Microsoft.AspNetCore.Authorization;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     namespace JWTAuthenticationExample.Models
     {
         public class Policies

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace IB.Domain.Entities
 {
@@ -17,7 +16,6 @@ namespace IB.Domain.Entities
         public string CreatedByUser { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string UpdatedByUser { get; set; }
-
         public virtual ICollection<Account> Accounts { get; set; }
         public Client()
         {

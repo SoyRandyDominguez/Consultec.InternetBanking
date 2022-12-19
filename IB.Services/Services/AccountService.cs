@@ -27,7 +27,6 @@ namespace IB.Application.Services
 
         public async Task<AccountResponseDto> Create(CreateAccountDto createDTO)
         {
-
             User user = await _userRepository.GetUserByClientId(createDTO.ClientId);
             if (user == null|| !user.Password.Equals(createDTO.Password))
             {
@@ -75,7 +74,6 @@ namespace IB.Application.Services
             bool canCreate = false;
             var random = new Random();
             string s = string.Empty;
-
             while (canCreate == false)
             {
                 for (int i = 0; i < 10; i++)
@@ -86,7 +84,6 @@ namespace IB.Application.Services
                     canCreate = true;
                 }
             }
-
             return long.Parse(s);
         }
 

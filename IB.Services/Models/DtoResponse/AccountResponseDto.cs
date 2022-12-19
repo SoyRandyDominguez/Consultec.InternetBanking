@@ -1,7 +1,5 @@
 ﻿using IB.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace IB.Application.Models.DtoResponse
 {
@@ -13,7 +11,6 @@ namespace IB.Application.Models.DtoResponse
         public double Balance { get; set; }
         public ClientResponseDto Client { get; set; }
         public AccountTypeResponseDto AccountType { get; set; }
-
         public AccountResponseDto(Account entity)
         {
             AccountNumber = entity.AccountNumber;

@@ -1,7 +1,4 @@
 ﻿using IB.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace IB.Application.Models.DtoResponse
 {
@@ -11,8 +8,6 @@ namespace IB.Application.Models.DtoResponse
         public string Name { get; set; }
         public string LastName { get; set; }
         public string IdentityDocument { get; set; }
-
-      
         public ClientResponseDto(Client clientEntity)
         {
             Id = clientEntity.Id;

@@ -1,13 +1,10 @@
-﻿using IB.Api.Base.JWTAuthentication.JWTAuthenticationExample.Models;
-using IB.Application.Interfaces;
+﻿using IB.Application.Interfaces;
 using IB.Application.Models.DtoRequest;
 using IB.Application.Models.DtoResponse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace InternetBanking.Controllers

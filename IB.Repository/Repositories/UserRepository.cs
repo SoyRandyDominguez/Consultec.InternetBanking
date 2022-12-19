@@ -1,11 +1,9 @@
 ﻿using IB.Domain.Context;
 using IB.Domain.Entities;
 using IB.Infraestructure.Interfaces;
-using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IB.Infraestructure.Repositories
@@ -21,7 +19,6 @@ namespace IB.Infraestructure.Repositories
         {
             var newEntity = _dbContext.Set<User>().Add(entity);
             await _dbContext.SaveChangesAsync();
-
             var retrievedEntity = await newEntity.GetDatabaseValuesAsync();
             return retrievedEntity.ToObject() as User;
         }
@@ -48,7 +45,6 @@ namespace IB.Infraestructure.Repositories
                        .Include(x => x.Client)
                         .ThenInclude(x=> x.Accounts)
                        .AsNoTracking().ToListAsync();
-
         }
     }
 }

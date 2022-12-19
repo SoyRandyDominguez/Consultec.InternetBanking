@@ -5,9 +5,7 @@ using IB.Application.Models.DtoResponse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace InternetBanking.Controllers
@@ -16,10 +14,8 @@ namespace InternetBanking.Controllers
     [Route("[controller]")]
     public class AuthenticationController : ControllerBase
     {
-
         private readonly ILogger<AuthenticationController> _logger;
         private readonly IUserService _service;
-
         public AuthenticationController(ILogger<AuthenticationController> logger, IUserService service)
         {
             _logger = logger;
@@ -47,13 +43,11 @@ namespace InternetBanking.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDto login)
         {
             IActionResult response = Unauthorized();
-
             UserResponseDto user = await _service.Login(login);
             if (user != null)
             {
                 response = Ok(user);
             }
-
             return response;
         }
     }

@@ -1,7 +1,4 @@
 ﻿using IB.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace IB.Application.Models.DtoResponse
 {
@@ -12,7 +9,6 @@ namespace IB.Application.Models.DtoResponse
         public int? ClientId { get; set; }
         public string? TokenJwt { get; set; }
         public ClientResponseDto Client { get; set; }
-
         public UserResponseDto(User userEntity)
         {
             Id = userEntity.Id;

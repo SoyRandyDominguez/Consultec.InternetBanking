@@ -7,7 +7,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IB.Infraestructure.Repositories.Base
@@ -16,28 +15,23 @@ namespace IB.Infraestructure.Repositories.Base
     {
         protected readonly IBContext _dbContext;
         protected const bool _isInactive = false;
-
         public BaseRepository(IBContext dbContext)
         {
             this._dbContext = dbContext;
         }
-
         public virtual IQueryable<TEntity> GetAll()
         {
             return _dbContext.Set<TEntity>().AsNoTracking();
         }
-
         public IQueryable<TEntity> GetAll(Func<IQueryable<TEntity>, IQueryable<TEntity>> func)
         {
             return func(_dbContext.Set<TEntity>()).AsQueryable();
         }
-
         public async virtual Task CreateAsync(TEntity entity)
         {
             await _dbContext.Set<TEntity>().AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
-
         public async virtual Task DeleteAsync(T id)
         {
             var entity = await GetByPKAsync(id);
@@ -56,9 +50,6 @@ namespace IB.Infraestructure.Repositories.Base
         {
             return await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
         }
-
-
-
         public async virtual Task<IEnumerable<TEntity>> GetAllFilterAsync(Func<TEntity, bool> predicate)
         {
             if (Equals(predicate, null) == false)
@@ -70,7 +61,6 @@ namespace IB.Infraestructure.Repositories.Base
                 return await this.GetAllAsync();
             }
         }
-
         public async virtual Task<TEntity> GetByPKAsync(T id)
         {
 
@@ -78,7 +68,6 @@ namespace IB.Infraestructure.Repositories.Base
                         .AsNoTracking()
                         .FirstOrDefaultAsync(e => e.Id.Equals(id));
         }
-
         public async virtual Task UpdateAsync(T id, TEntity entity)
         {
             var entityToUpdate = await this.GetByPKAsync(id);
@@ -95,7 +84,6 @@ namespace IB.Infraestructure.Repositories.Base
                         }
                     }
                 );
-
                 _dbContext.Set<TEntity>().Update(entityToUpdate);
                 await _dbContext.SaveChangesAsync();
             }
@@ -104,24 +92,20 @@ namespace IB.Infraestructure.Repositories.Base
                 throw new DbUpdateException($"Not Found PK {id} para la entidad {typeof(TEntity)}");
             }
         }
-
         public async virtual Task AddOrUpdateAsync(TEntity entity)
         {
             if (Equals(entity, null))
             {
                 throw new ArgumentNullException("entity");
             }
-
             _dbContext.Set<TEntity>().Update(entity);
             await _dbContext.SaveChangesAsync();
         }
-
         public async virtual Task CreateMultipleAsync(IEnumerable<TEntity> entities)
         {
             await _dbContext.Set<TEntity>().AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
         }
-
         public async virtual Task UpdateMultipleAsync(IEnumerable<TEntity> entities)
         {
             _dbContext.Set<TEntity>().UpdateRange(entities);

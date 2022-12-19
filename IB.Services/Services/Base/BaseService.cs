@@ -3,7 +3,6 @@ using IB.Domain.Entities.Base;
 using IB.Infraestructure.Interfaces.Base;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IB.Application.Services.Base
@@ -19,7 +18,6 @@ namespace IB.Application.Services.Base
         {
             await this._baseRepo.CreateAsync(entity);
         }
-
         public async Task DeleteAsync(T id)
         {
             await this._baseRepo.DeleteAsync(id);
@@ -29,17 +27,14 @@ namespace IB.Application.Services.Base
         {
             return await this._baseRepo.GetAllAsync();
         }
-
         public async Task<IEnumerable<TEntity>> GetAllFilterAsync(Func<TEntity, bool> predicate)
         {
             return await this._baseRepo.GetAllFilterAsync(predicate);
         }
-
         public async Task<TEntity> GetByPKAsync(T id)
         {
             return await this._baseRepo.GetByPKAsync(id);
         }
-
         public async Task UpdateAsync(T id, TEntity entity)
         {
             await this._baseRepo.UpdateAsync(id, entity);

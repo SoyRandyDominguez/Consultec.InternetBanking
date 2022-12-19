@@ -3,9 +3,7 @@ using IB.Application.Models.DtoRequest;
 using IB.Application.Models.DtoResponse;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace InternetBanking.Controllers
@@ -14,10 +12,8 @@ namespace InternetBanking.Controllers
     [Route("[controller]")]
     public class ClientController : ControllerBase
     {
-
         private readonly ILogger<ClientController> _logger;
         private readonly IClientService _service;
-
         public ClientController(ILogger<ClientController> logger, IClientService service)
         {
             _logger = logger;

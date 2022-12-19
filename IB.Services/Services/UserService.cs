@@ -78,8 +78,6 @@ namespace IB.Application.Services
                     expires: DateTime.Now.AddMinutes(30),
                     signingCredentials: credentials
                 );
-
-
                 tokenResult = new JwtSecurityTokenHandler().WriteToken(token);
             }
             catch (Exception e )
