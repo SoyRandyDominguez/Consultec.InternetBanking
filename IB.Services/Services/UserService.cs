@@ -36,5 +36,15 @@ namespace IB.Application.Services
             var clients = await _repository.GetUsers();
             return clients.Select(x => new UserResponseDto(x)).ToList();
         }
+
+        public async Task<UserResponseDto> Login(LoginDto loginDto)
+        {
+            var client = await _repository.GetUser(loginDto.Username,loginDto.Password);
+            if (client == null)
+            {
+                return null;
+            }
+            return new UserResponseDto(client);
+        }
     }
 }

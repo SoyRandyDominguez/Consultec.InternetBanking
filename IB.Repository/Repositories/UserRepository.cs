@@ -26,6 +26,14 @@ namespace IB.Infraestructure.Repositories
             return retrievedEntity.ToObject() as User;
         }
 
+        public async Task<User> GetUser(string user, string pass)
+        {
+            return await _dbContext.Set<User>()
+                        .Include(x => x.Client)
+                         .ThenInclude(x => x.Accounts)
+                        .AsNoTracking().Where(x => x.UserName == user && x.Password == pass).FirstOrDefaultAsync();
+        }
+
         public async Task<List<User>> GetUsers()
         {
             return await _dbContext.Set<User>()

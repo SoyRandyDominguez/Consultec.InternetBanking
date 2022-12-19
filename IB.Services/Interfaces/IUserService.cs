@@ -13,5 +13,6 @@ namespace IB.Application.Interfaces
     {
         Task<List<UserResponseDto>> GetAll();
         Task<UserResponseDto> Create(CreateUserDto createDTO);
+        Task<UserResponseDto> Login(LoginDto loginDto);
     }
 }
