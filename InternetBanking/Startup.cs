@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Text;
 
@@ -38,9 +39,11 @@ namespace InternetBanking
             });
             services.AddDbContext<IBContext>(opt => opt.UseInMemoryDatabase("ConsultecIB"));
             services.AddScoped<IBContext>();
+            services.AddControllers();
+
             InyectDependents(services);
             ImplementJWT(services);
-            services.AddControllers();
+            ImplementSwagger(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +54,10 @@ namespace InternetBanking
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Consultec IB V1");
+            });
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -97,6 +104,25 @@ namespace InternetBanking
             {
                 config.AddPolicy(Policies.Admin, Policies.AdminPolicy());
                 config.AddPolicy(Policies.User, Policies.UserPolicy());
+            });
+        }
+
+        private void ImplementSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Consultec IB Swagger UI",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Randy Dominguez",
+                        Email = "dominguezcalzado@gmail.com",
+                        Url = new Uri("https://www.linkedin.com/in/randydmz/"),
+                    },
+                });
             });
         }
     }

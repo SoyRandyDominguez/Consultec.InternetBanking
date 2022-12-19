@@ -1,4 +1,5 @@
-﻿using IB.Application.Interfaces;
+﻿using IB.Api.Base.JWTAuthentication.JWTAuthenticationExample.Models;
+using IB.Application.Interfaces;
 using IB.Application.Models.DtoRequest;
 using IB.Application.Models.DtoResponse;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +27,7 @@ namespace InternetBanking.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = Policies.User)]
         public Task<List<UserResponseDto>> Get()
         {
             return _service.GetAll();
